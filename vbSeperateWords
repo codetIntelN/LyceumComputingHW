@@ -1,0 +1,37 @@
+'Seperates a string with two words and a space 
+'Displays the result in two seperate text boxes
+'Works for any string with two words and a space in between
+'Commited to github by codetIntelN on 4/12/2011
+'For Educational Use Only
+
+
+Public Sub cmdSeperate_click()
+
+'Declare Necessary Variables
+
+  Dim strText , strWord1, strWord2 As String
+  Dim intLength,intSpace As Integer
+ 
+'Find the location of the Space and the Length of the String
+
+ intSpace=instr(strText," ")
+ intLength=len(strText)
+ 
+'Split the String into 2 words and parse them to variables
+
+'Use the Left function to get all the characters before the space . 
+'This is the first word
+
+ strWord1=left(strText,(intSpace-1))
+
+'Use the Right function to get all the characters after the space . 
+'This is the second word.
+
+ strWord2=right(strText,(intLength-intSpace))
+
+'Parse the values in the Variables to the text boxes
+
+ txtWord1.Text= strWord1
+ txtWord2.Text= strWord2
+
+End Sub
