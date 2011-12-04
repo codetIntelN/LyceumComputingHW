@@ -1,0 +1,81 @@
+
+'Reads A Text File Which Contains Dates
+'Fixes all the dates to dd/mm/yyyy format
+'Writes newly changed dates to a New File
+'UnTested Program
+'Necessary Comments Lacking As A Result :/
+'Will Commit Final, TESTED Version ASAP
+'Commited to github by codetIntelN on 4/12/2011
+
+
+Private Sub cmdDoOp_click()
+
+Dim strAdmDate,strD,strM,strY,strFinalD As String
+Dim intLength,intI,intJ As Integer
+Dim arrSlash (1 to 2) as Integer
+
+Open "~/filepath_for_original_file" For Input As #1
+
+ Do While Not EOF(1)
+
+  Input #1, strAdmDate
+
+  Open "~/filepath_for_new_file" For Append As #2
+    
+   Do While Not EOF(1)
+  
+    intLength=len(strAdmDate)
+
+    for intI=1 to intLength
+    
+     If(mid(strAdmDate,i,1))="/" then
+        
+       For intJ = 1 to 2
+         If arrSlash[intJ] <> "/" then
+           arrSlash[intJ] = intI
+         End If
+       Next intJ
+     End If
+    Next intI
+
+strD = left(strAdmDate,arrSlash[1])
+If ((len strD))=1 then
+ strD = "0" + strD
+End If
+
+strM = mid(strAdmDate, arrSlash[2], (arrSlash[2]-arrSlash[1]) )
+If ((len strM))=1 then
+ strD = "0" + strD
+End If
+
+strY = right(strAdmDate, intLength - arrSlash[2])
+If ((len strY))= 1 then
+  strY = "200" + strY
+ else If ((len strY))= 2 then
+  strY= "20" + strY
+ else If ((len strY))= 3 then
+  strY= "2" + strY
+ End If
+ End If
+EndIf
+
+strFinalD= strD + "/" + strM + "/" + strY
+
+ Write #2, strFinalD
+
+ Loop
+
+ Close #2
+
+Loop
+
+Close #1
+
+ 
+
+End Sub
+
+
+
+
+  
